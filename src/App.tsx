@@ -1,4 +1,4 @@
-import { LampDemo } from "./components/ui/lamp-header"
+import { LampDemo } from "@/components/ui/lamp-header"
 
 function App() {
   return (
