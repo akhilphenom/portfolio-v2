@@ -10,7 +10,7 @@ function AppIconComponent ({ index, item, mouseX }) {
         return Number(value) - (bounds.x + bounds.width/2)
     })
 
-    const widthSync = useTransform(distance, [-200, 0, 200], [40, 70, 40])
+    const widthSync = useTransform(distance, [-200, 0, 200], [44, 70, 44])
     const width = useSpring(widthSync, {
         damping: 12,
         mass: 0.5,
@@ -21,7 +21,7 @@ function AppIconComponent ({ index, item, mouseX }) {
         key={index}
         ref={ref}
         style={{ width }}
-        className='aspect-square w-10'
+        className='aspect-square w-11'
         >
             <Hint label={item.name}>
                 <img src={item.image}/>
@@ -31,12 +31,12 @@ function AppIconComponent ({ index, item, mouseX }) {
 }
 
 function DockComponent () {
-    const mouseX: MotionValue = useMotionValue(Infinity)
+    const mouseX: MotionValue = useMotionValue(Number.MAX_SAFE_INTEGER)
     return (
         <motion.div 
         onMouseMove={e => mouseX.set(e.pageX)}
-        onMouseLeave={_ => mouseX.set(Infinity)}
-        className='flex flex-row items-center gap-4 justify-center bg-gray-700 px-4 py-2 rounded-xl'>
+        onMouseLeave={_ => mouseX.set(Number.MAX_SAFE_INTEGER)}
+        className='flex flex-row items-center gap-4 justify-center bg-gray-700 px-5 py-2 rounded-xl'>
             {icons.map((item, index)=>(
                 <AppIcon mouseX={mouseX} index={index} item={item} key={index}/>
             ))}
