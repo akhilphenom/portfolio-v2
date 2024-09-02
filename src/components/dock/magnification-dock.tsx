@@ -36,10 +36,12 @@ function DockComponent () {
         <motion.div 
         onMouseMove={e => mouseX.set(e.pageX)}
         onMouseLeave={_ => mouseX.set(Number.MAX_SAFE_INTEGER)}
-        className='flex flex-row items-center gap-4 justify-center bg-gray-700 px-5 py-2 rounded-xl'>
-            {icons.map((item, index)=>(
-                <AppIcon mouseX={mouseX} index={index} item={item} key={index}/>
-            ))}
+        className='flex flex-row items-center gap-4 justify-center px-5 py-2 rounded-xl max-h-[75px] shadow-md'
+        style={{
+            background: '#ffffff24'
+        }}
+        >
+            { icons.map((item, index) => <AppIcon mouseX={mouseX} index={index} item={item} key={index}/>) }
         </motion.div>
     )
 }
