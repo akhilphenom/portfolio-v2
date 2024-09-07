@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import WobbleCard from '../shared/wobble-card';
+import WobbleCard from './shared/wobble-card';
 
 function HeroSection() {
     const name = 'Sai Akhil Katukam';

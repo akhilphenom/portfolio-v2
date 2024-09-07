@@ -1,7 +1,8 @@
 import { GoogleOAuthProvider } from "@react-oauth/google"
 import { MagnificationDock } from "./components/dock/magnification-dock"
 import { BackgroundGradientAnimation } from "./components/ui/background-gradient-animation"
-import HeroSection from "./components/derived/hero-section"
+import HeroSection from "./components/hero-section"
+import Window from "./components/window/window"
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <main className="bg-slate-950">
         <BackgroundGradientAnimation/>
         <HeroSection/>
+        <Window/>
         <MagnificationDock/>
       </main>
     </GoogleOAuthProvider>
