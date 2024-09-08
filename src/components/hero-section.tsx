@@ -2,16 +2,6 @@ import { motion } from 'framer-motion';
 import WobbleCard from './shared/wobble-card';
 
 function HeroSection() {
-    const name = 'Sai Akhil Katukam';
-    const yoe = '2+'
-    const highlights = [
-        name,
-        yoe
-    ]
-    const sentences = [
-        `Hello! My name is ${name}`,
-        `A Full Stack Developer with ${yoe} of experience`
-    ]
     return (
         <>
             <div className='absolute w-full top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]'>

@@ -3,8 +3,8 @@ import { createContext, useState } from 'react';
 export type XYWH = {
   x: number,
   y: number,
-  width: number,
-  height: number,
+  width: number | string,
+  height: number | string,
 }
 
 export type Window = {

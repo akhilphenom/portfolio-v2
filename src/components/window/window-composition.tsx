@@ -47,8 +47,17 @@ export default function WindowComposition({
         setWindowDimensions(windowName, {
             x: 0,
             y: 0,
-            width: 100,
-            height: 100
+            width: '100vw',
+            height: '100vh'
+        })
+    }
+
+    const minimizeWindow = () => {
+        setWindowDimensions(windowName, {
+            x: 0,
+            y: 0,
+            width: 400,
+            height: 400
         })
     }
 
@@ -63,7 +72,7 @@ export default function WindowComposition({
                 />
             </Button>
             <Button variant="ghost" size="icon" className="rounded-full w-[18px] h-[18px] bg-yellow-500 hover:bg-yellow-600"
-            >
+            onClick={minimizeWindow}>
                 <Minimize2 className={
                     cn(windowActionClass)
                 }

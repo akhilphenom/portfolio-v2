@@ -12,7 +12,7 @@ function WindowResizer({
     window: { name: windowName },
     children
 }: IProps) {
-    const initialDimensions = {
+    const initialDimensions: XYWH = {
         x: 150,
         y: 150,
         width: 0,
@@ -44,7 +44,8 @@ function WindowResizer({
         disableDragging={disableDragging}
         dragHandleClassName='window-drag-handle'
         style={{
-            zIndex: opened ? zIndex : 0
+            zIndex: opened ? zIndex : -1,
+            overflow: 'hidden',
         }}
         className={`!flex flex-col`}
         minHeight={400}
