@@ -1,9 +1,11 @@
 import { motion, MotionValue, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { memo, useRef } from 'react'
+import { memo, useCallback, useRef } from 'react'
 import { icons } from './icons';
 import { Hint } from '../shared/hint';
+import { useWindows } from '@/lib/hooks/windows.hook';
 
 function AppIconComponent ({ index, item, mouseX }) {
+    const { addWindow, windows, setWindowState, setDisableDragging } = useWindows();
     const ref = useRef<HTMLDivElement>(null)!;
     const distance = useTransform(mouseX, (value: MotionValue) => {
         const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
@@ -16,12 +18,31 @@ function AppIconComponent ({ index, item, mouseX }) {
         mass: 0.5,
         stiffness: 150,
     })
+
+    const openWindow = useCallback(() => {
+        if(windows.find(({ name }) => name == item.window)) {
+            if(item.opened) {
+                return;
+            }
+            setWindowState(item.window, true)
+            setDisableDragging(item.window, false)
+        } else {
+            addWindow(item.window, {
+                x: 150,
+                y: 150,
+                width: 400,
+                height: 400,
+            })
+        }
+    }, [item, addWindow, windows])
+
     return (
         <motion.div 
         key={index}
         ref={ref}
         style={{ width }}
         className='aspect-square w-11'
+        onClick={openWindow}
         >
             <Hint label={item.name}>
                 <img src={item.image}/>

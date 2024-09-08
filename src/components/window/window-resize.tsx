@@ -1,32 +1,61 @@
-import { useState } from 'react';
+import { useWindows } from '@/lib/hooks/windows.hook';
+import { Window, XYWH } from '@/lib/providers/window';
+import { useEffect, useState } from 'react';
 import { Rnd } from 'react-rnd';
 
 interface IProps {
-    children: React.ReactNode
+    children: React.ReactNode,
+    window: Window 
 }
 
 function WindowResizer({
+    window: { name: windowName },
     children
 }: IProps) {
-    const [state, setState] = useState({
+    const initialDimensions = {
         x: 150,
         y: 150,
-        width: 400,
-        height: 400
-    })
+        width: 0,
+        height: 0
+    }
+    const { windows, setWindowDimensions, getWindow } = useWindows();
+    const [state, setState] = useState(initialDimensions)
+    const [zIndex, setZIndex] = useState(0)
+    const [opened, setOpened] = useState(true);
+    const [disableDragging, setDisableDragging] = useState(false);
+
+    const modifyDimensions = (dimensions: XYWH) => {
+        setState(state => ({ ...state, ...dimensions }))
+        setWindowDimensions(windowName, dimensions)
+    }
+    
+    useEffect(() => {
+        if(windows.length) {
+            const window = getWindow(windowName)
+            setState(window.dimensions)
+            setDisableDragging(window.disableDragging)
+            setOpened(window.opened)
+            setZIndex(window.zIndex)
+        }
+    }, [windows])
+
     return (
         <Rnd
+        disableDragging={disableDragging}
         dragHandleClassName='window-drag-handle'
-        className='!flex flex-col'
+        style={{
+            zIndex: opened ? zIndex : 0
+        }}
+        className={`!flex flex-col`}
         minHeight={400}
         minWidth={600}
-        maxWidth={'90%'}
+        maxWidth={'100%'}
         bounds={'parent'}
         size={{ width: state.width, height: state.height }}
         position={{ x: state.x, y: state.y }}
-        onDragStop={(_e, d) => { setState(state => ({ ...state, x: d.x, y: d.y })) }}
+        onDragStop={(_e, d) => { modifyDimensions({ ...state, x: d.x, y: d.y }) }}
         onResizeStop={(_e, _direction, ref, _delta, position) => {
-            setState({
+            modifyDimensions({
                 width: Number(ref.style.width),
                 height: Number(ref.style.height),
                 ...position,
