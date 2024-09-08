@@ -34,6 +34,7 @@ export interface WindowContext {
   setWindowScreenSize: (window: WINDOW_TYPES, fullScreen: boolean) => void
   setWindowDimensions: (window: WINDOW_TYPES, dimensions: XYWH) => void,
   setDisableDragging: (window: WINDOW_TYPES, disable: boolean) => void,
+  setWindowZIndex: (window: WINDOW_TYPES, zIndex: number) => void,
   rearrangeWindows: (windows: Window[]) => void
 }
 
@@ -47,6 +48,7 @@ export const WindowsContext = createContext<WindowContext>({
   setWindowScreenSize: (_window: WINDOW_TYPES, _state: boolean) => {},
   setWindowDimensions: (_window: WINDOW_TYPES, _dimensions: XYWH) => {},
   setDisableDragging: (_window: WINDOW_TYPES, _disable: boolean) => {},
+  setWindowZIndex: (_window: WINDOW_TYPES, _zIndex: number) => {},
   rearrangeWindows: (_windows: Window[]) => {}
 });
 
@@ -81,6 +83,10 @@ export const WindowsProvider = ({ children }) => {
     setWindows((prevWindows) => prevWindows.map(w => w.name === name ? { ...w, disableDragging: disable } : w ));
   };
 
+  const setWindowZIndex = (name: WINDOW_TYPES, zIndex: number) => {
+    setWindows((prevWindows) => prevWindows.map(w => w.name === name ? { ...w, zIndex } : w ));
+  };
+
   const getWindow = (window: WINDOW_TYPES) => windows.find(({ name }) => name == window)
 
   const rearrangeWindows = (windows: Window[]) => {
@@ -99,6 +105,7 @@ export const WindowsProvider = ({ children }) => {
         setWindowScreenSize, 
         setWindowDimensions,
         setDisableDragging,
+        setWindowZIndex,
         rearrangeWindows,
       }}
     >

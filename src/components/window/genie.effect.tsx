@@ -11,7 +11,7 @@ interface IProps {
 export default function Genie({
     name: windowName, children
 }: IProps) {
-    const { windows, setWindowState, getWindow } = useWindows();
+    const { windows, setWindowZIndex, getWindow } = useWindows();
     const [isOpen, setIsOpen] = useState(false)
 
     const modalVariants = {
@@ -58,7 +58,8 @@ export default function Genie({
     }, [])
 
     return (
-        <AnimatePresence>
+        <AnimatePresence
+        onExitComplete={() => setWindowZIndex(windowName, -1)}>
             {isOpen && (
                 <motion.div
                     className="flex-1 flex"

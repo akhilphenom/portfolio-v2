@@ -44,7 +44,7 @@ function WindowResizer({
         disableDragging={disableDragging}
         dragHandleClassName='window-drag-handle'
         style={{
-            zIndex: opened ? zIndex : -1,
+            zIndex,
             overflow: 'hidden',
         }}
         className={`!flex flex-col`}
