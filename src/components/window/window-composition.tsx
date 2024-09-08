@@ -29,7 +29,7 @@ export default function WindowComposition({
         }
         const rearrangedArray = [...closed,...opened.slice(0, index), ...opened.slice(index + 1), opened[index]].map((item, index) => ({
             ...item,
-            zIndex: 99 + windows.length + index
+            zIndex: !item.opened ? -1 : 99 + windows.length + index
         }));
         rearrangeWindows(rearrangedArray)
     }, [windows])

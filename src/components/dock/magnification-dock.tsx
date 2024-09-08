@@ -5,7 +5,7 @@ import { Hint } from '../shared/hint';
 import { useWindows } from '@/lib/hooks/windows.hook';
 
 function AppIconComponent ({ index, item, mouseX }) {
-    const { addWindow, windows, setWindowState, setDisableDragging } = useWindows();
+    const { addWindow, windows, setWindowState, setDisableDragging, setWindowZIndex } = useWindows();
     const ref = useRef<HTMLDivElement>(null)!;
     const distance = useTransform(mouseX, (value: MotionValue) => {
         const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
@@ -21,6 +21,7 @@ function AppIconComponent ({ index, item, mouseX }) {
 
     const openWindow = useCallback(() => {
         if(windows.find(({ name }) => name == item.window)) {
+            setWindowZIndex(item.window, 99+ windows.length + 1)
             if(item.opened) {
                 return;
             }
@@ -33,6 +34,7 @@ function AppIconComponent ({ index, item, mouseX }) {
                 width: 400,
                 height: 400,
             })
+            setWindowZIndex(item.window, 99 + windows.length + 1)
         }
     }, [item, addWindow, windows])
 
