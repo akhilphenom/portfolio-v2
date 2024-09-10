@@ -5,24 +5,17 @@ export const icons = [
     {
         name: 'Launchpad',
         link: 'assets/launchpad.png',
-        redirect: false,
-        url: () => {
-            
-        },
         window: WINDOW_TYPES.LAUNCHPAD,
         image: IMAGES.launchpad,
         href: null,
-        active: false,
     },
     {
         name: 'Home',
         link: 'assets/home.png',
-        redirect: false,
         url: '/',
         href: null,
         image: IMAGES.home,
         window: WINDOW_TYPES.LAUNCHPAD,
-        active: true,
     },
     {
         name: 'Work Experience',
@@ -32,7 +25,6 @@ export const icons = [
         window: WINDOW_TYPES.WORK_EXPERIENCE,
         image: IMAGES.job,
         href: null,
-        active: false,
     },
     {
         name: 'Resume',
@@ -41,8 +33,7 @@ export const icons = [
         url: null,
         image: IMAGES.resume,
         window: WINDOW_TYPES.RESUME,
-        href: 'https://drive.google.com/file/d/1DHP90nn_uERFvz6jo4-BFV0dZeV8RLTW/view?usp=sharing',
-        active: false,
+        href: 'https://drive.google.com/file/d/11t2Ekgk0w9isTid3OTiZ_9_MJ5s_OIMq/view?usp=sharing',
     },
     {
         name: 'Projects',
@@ -52,7 +43,6 @@ export const icons = [
         image: IMAGES.project,
         window: WINDOW_TYPES.PROJECTS,
         href: null,
-        active: false,
     },
     {
         name: 'Github',
@@ -62,7 +52,6 @@ export const icons = [
         image: IMAGES.github,
         href: 'https://github.com/akhilphenom',
         window: WINDOW_TYPES.PROJECTS,
-        active: false,
     },
     {
         name: 'LinkedIn',
@@ -72,7 +61,6 @@ export const icons = [
         image: IMAGES.linkedin,
         href: 'https://www.linkedin.com/in/sai-akhil-katukam/',
         window: WINDOW_TYPES.LAUNCHPAD,
-        active: false,
     },
     {
         name: 'Gmail',
@@ -82,6 +70,5 @@ export const icons = [
         image: IMAGES.gmail,
         href: `mailto:saiakhilk.katukam@gmail.com`,
         window: WINDOW_TYPES.GMAIL,
-        active: false,
     },
 ]
