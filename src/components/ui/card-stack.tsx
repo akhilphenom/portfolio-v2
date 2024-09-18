@@ -20,7 +20,7 @@ export const CardStack = ({
   offset?: number;
   scaleFactor?: number;
 }) => {
-  const CARD_OFFSET = offset || 10;
+  const CARD_OFFSET = offset || 5;
   const SCALE_FACTOR = scaleFactor || 0.06;
   const [cards, setCards] = useState<Card[]>(items);
 
@@ -45,7 +45,7 @@ export const CardStack = ({
         return (
           <motion.div
             key={card.id}
-            className="absolute bg-white h-60 w-60 rounded-3xl p-4 shadow-xl border border-neutral-200 flex flex-col justify-between"
+            className="absolute bg-[rgba(255,255,255,0.95)] h-60 w-60 rounded-3xl p-4 shadow-md flex flex-col justify-evenly"
             style={{
               transformOrigin: "top center",
             }}
@@ -55,17 +55,20 @@ export const CardStack = ({
               zIndex: cards.length - index, //  decrease z-index for the cards that are behind
             }}
           >
-            <div className="font-normal text-neutral-700">
-              {card.content}
-            </div>
-            <div>
-              <p className="text-neutral-500 font-medium">
-                {card.name}
-              </p>
-              <p className="text-neutral-400 font-normal dark:text-neutral-200">
-                {card.designation}
-              </p>
-            </div>
+            {
+              index == 0 ? 
+              <>
+                {card.content}
+                  <div>
+                    <p className="text-neutral-500 font-medium">
+                      {card.name}
+                    </p>
+                    <p className="text-neutral-400 !font-light dark:text-neutral-200 text-center">
+                      {card.designation}
+                    </p>
+                  </div>
+              </> : null
+            }
           </motion.div>
         );
       })}
