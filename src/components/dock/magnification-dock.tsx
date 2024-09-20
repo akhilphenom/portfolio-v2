@@ -19,6 +19,10 @@ function AppIconComponent ({ index, item, mouseX }) {
         stiffness: 150,
     })
 
+    const onClick = () => {
+        item.href ? window.open(item.href, "_blank") : openWindow()
+    }
+
     const openWindow = useCallback(() => {
         if(windows.find(({ name }) => name == item.window)) {
             setWindowZIndex(item.window, 99+ windows.length + 1)
@@ -44,7 +48,7 @@ function AppIconComponent ({ index, item, mouseX }) {
         ref={ref}
         style={{ width }}
         className='aspect-square w-11'
-        onClick={openWindow}
+        onClick={onClick}
         >
             <Hint label={item.name}>
                 <img src={item.image}/>

@@ -1,8 +1,6 @@
 "use client";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-
-let interval: any;
+import { memo, useCallback, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 export type Card = {
   id: number;
@@ -11,67 +9,80 @@ export type Card = {
   content: React.ReactNode;
 };
 
-export const CardStack = ({
+const CardComponent = () => ({
   items,
-  offset,
-  scaleFactor,
+  offset = 5,
+  scaleFactor = 0.06,
+  autoFlipInterval = 3000,
 }: {
   items: Card[];
   offset?: number;
   scaleFactor?: number;
+  autoFlipInterval?: number;
 }) => {
-  const CARD_OFFSET = offset || 5;
-  const SCALE_FACTOR = scaleFactor || 0.06;
   const [cards, setCards] = useState<Card[]>(items);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  useEffect(() => {
-    startFlipping();
-    return () => clearInterval(interval);
-  }, []);
-
-  const startFlipping = () => {
-    interval = setInterval(() => {
-      setCards((prevCards: Card[]) => {
-        const newArray = [...prevCards]; // create a copy of the array
-        newArray.unshift(newArray.pop()!); // move the last element to the front
+  const rotateCards = useCallback(() => {
+    if (!isAnimating) {
+      setIsAnimating(true);
+      setCards((prevCards) => {
+        const newArray = [...prevCards];
+        newArray.unshift(newArray.pop()!);
         return newArray;
       });
-    }, 5000);
+      setTimeout(() => setIsAnimating(false), 500);
+    }
+  }, [isAnimating]);
+
+  useEffect(() => {
+    const interval = setInterval(rotateCards, autoFlipInterval);
+    return () => clearInterval(interval);
+  }, [rotateCards, autoFlipInterval]);
+
+  const handleClick = () => {
+    rotateCards();
   };
 
   return (
-    <div className="relative  h-60 w-60">
-      {cards.map((card, index) => {
-        return (
+    <div className="relative h-60 w-60 cursor-pointer select-none" onClick={handleClick}>
+      <AnimatePresence>
+        {cards.map((card, index) => (
           <motion.div
             key={card.id}
-            className="absolute bg-[rgba(255,255,255,0.95)] h-60 w-60 rounded-3xl p-4 shadow-md flex flex-col justify-evenly"
-            style={{
-              transformOrigin: "top center",
-            }}
+            className="absolute bg-[rgba(255,255,255)] h-[250px] w-60 rounded-3xl p-4 shadow-md flex flex-col justify-between
+            bg-gradient-to-b from-white to-blue-400/60"
+            style={{ transformOrigin: "top center" }}
+            initial={{ scale: 1 - (cards.length - 1) * scaleFactor, y: (cards.length - 1) * offset }}
             animate={{
-              top: index * -CARD_OFFSET,
-              scale: 1 - index * SCALE_FACTOR, // decrease scale for cards that are behind
-              zIndex: cards.length - index, //  decrease z-index for the cards that are behind
+              scale: 1 - index * scaleFactor,
+              y: index * -offset,
+              zIndex: cards.length - index,
+            }}
+            exit={{ scale: 1, y: -30, opacity: 0 }}
+            transition={{
+              type: "spring",
+              stiffness: 200,
+              damping: 10,
+              mass: 0.8,
             }}
           >
-            {
-              index == 0 ? 
+            {index === 0 && (
               <>
                 {card.content}
-                  <div>
-                    <p className="text-neutral-500 font-medium">
-                      {card.name}
-                    </p>
-                    <p className="text-neutral-400 !font-light dark:text-neutral-200 text-center">
-                      {card.designation}
-                    </p>
-                  </div>
-              </> : null
-            }
+                <div>
+                  <p className="text-neutral-500 font-medium">{card.name}</p>
+                  <p className="text-sky-600 !font-extralight drop-shadow-md dark:text-neutral-200 text-center text-sm">
+                    {card.designation}
+                  </p>
+                </div>
+              </>
+            )}
           </motion.div>
-        );
-      })}
+        ))}
+      </AnimatePresence>
     </div>
   );
 };
+
+export const CardStack = memo(CardComponent())

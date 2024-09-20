@@ -4,13 +4,13 @@ import { cn } from "@/lib/utils";
 
 export const Cards = () => {
     
-    const Image = ({src, width = 50}: {src: any, width?: number}) => (
+    const Image = ({src, width = 50, height = 50}: {src: any, width?: number, height?: number}) => (
         <div className={
             `w-[${width}px]`
         }>
             <img src={src} className={
                 cn(
-                    "aspect-auto object-contain !h-[60px]",
+                    `aspect-auto object-contain !h-[${height}px]`,
                     width && `!w-[${width}px]`
                 )
             }/>
@@ -26,8 +26,9 @@ export const Cards = () => {
                 <div className="flex flex-wrap gap-4 items-center justify-center">
                     <Image src={ICONS.angular}/>
                     <Image src={ICONS.react}/>
+                    <Image src={ICONS.expo}/>
+                    <Image src={ICONS.reactNative}/>
                     <Image src={ICONS.next}/>
-                    <Image src={ICONS.reactNative} width={61}/>
                 </div>
             )
         },
@@ -42,6 +43,9 @@ export const Cards = () => {
                     <Image src={ICONS.scss}/>
                     <Image src={ICONS.tailwindcss}/>
                     <Image src={ICONS.shadcn}/>
+                    <Image src={ICONS.angularmat}/>
+                    <Image src={ICONS.framer}/>
+                    <Image src={ICONS.lottie}/>
                 </div>
             )
         },
@@ -54,7 +58,7 @@ export const Cards = () => {
                     <Image src={ICONS.mongo}/>
                     <Image src={ICONS.express}/>
                     <Image src={ICONS.nodejs}/>
-                    <Image src={ICONS.sql}/>
+                    <Image src={ICONS.mysql}/>
                     <Image src={ICONS.redis}/>
                 </div>
             )
@@ -70,6 +74,24 @@ export const Cards = () => {
                     <Image src={ICONS.cpp}/>
                     <Image src={ICONS.java}/>
                     <Image src={ICONS.python}/>
+                    <Image src={ICONS.golang}/>
+                    <Image src={ICONS.sql}/>
+                </div>
+            )
+        },
+        {
+            id: 5,
+            name: null,
+            designation: '- Cloud Services -',
+            content: (
+                <div className="flex flex-wrap gap-4 items-center justify-center">
+                    <Image src={ICONS.lambda}/>
+                    <Image src={ICONS.sqs}/>
+                    <Image src={ICONS.dynamodb}/>
+                    <Image src={ICONS.gateway}/>
+                    <Image src={ICONS.heroku}/>
+                    <Image src={ICONS.route53}/>
+                    <Image src={ICONS.gc}/>
                 </div>
             )
         },

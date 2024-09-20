@@ -33,7 +33,7 @@ export const icons = [
         url: null,
         image: IMAGES.resume,
         window: WINDOW_TYPES.RESUME,
-        href: 'https://drive.google.com/file/d/11t2Ekgk0w9isTid3OTiZ_9_MJ5s_OIMq/view?usp=sharing',
+        href: 'https://drive.google.com/file/d/195Hwha7sHvkYxaEpSeKDnpOKkyLLmY1g/view?usp=sharing',
     },
     {
         name: 'Projects',
