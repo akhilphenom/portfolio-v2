@@ -21,7 +21,7 @@ const blurDefaults = [
 ]
 
 export const BackgroundGradientAnimation = ({
-  gradientBackgroundStart = "rgb(0, 0, 0)",
+  gradientBackgroundStart = "rgb(0, 17, 50)",
   gradientBackgroundEnd = "rgb(0, 17, 22)",
   firstColor = "18, 113, 255",
   secondColor = "221, 74, 255",
@@ -29,7 +29,7 @@ export const BackgroundGradientAnimation = ({
   fourthColor = "200, 50, 50",
   fifthColor = "180, 180, 50",
   pointerColor = "140, 100, 255",
-  size = "100%",
+  size = "80%",
   blendingValue = "hard-light",
   children,
   className,
