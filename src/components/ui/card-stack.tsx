@@ -51,7 +51,7 @@ const CardComponent = () => ({
           <motion.div
             key={card.id}
             className="absolute bg-[rgba(255,255,255)] h-[250px] w-60 rounded-3xl p-4 shadow-md flex flex-col justify-between
-            bg-gradient-to-b from-white to-blue-400/60"
+            bg-gradient-to-b from-slate-100 to-sky-50"
             style={{ transformOrigin: "top center" }}
             initial={{ scale: 1 - (cards.length - 1) * scaleFactor, y: (cards.length - 1) * offset }}
             animate={{

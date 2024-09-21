@@ -1,16 +1,35 @@
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 
+const defaults = {
+  gradientBackgroundStart: "rgb(108, 0, 162)",
+  gradientBackgroundEnd: "rgb(0, 17, 82)",
+  firstColor: "18, 113, 255",
+  secondColor: "221, 74, 255",
+  thirdColor: "100, 220, 255",
+  fourthColor: "200, 50, 50",
+  fifthColor: "180, 180, 50",
+  pointerColor: "140, 100, 255",
+  size: "80%",
+  blendingValue: "hard-light",
+  interactive: true,
+}
+
+const blurDefaults = [
+  "gradients-container h-full w-full blur-lg",
+  "blur-2xl" || "[filter:url(#blurMe)_blur(40px)]"
+]
+
 export const BackgroundGradientAnimation = ({
-  gradientBackgroundStart = "rgb(108, 0, 162)",
-  gradientBackgroundEnd = "rgb(0, 17, 82)",
+  gradientBackgroundStart = "rgb(0, 0, 0)",
+  gradientBackgroundEnd = "rgb(0, 17, 22)",
   firstColor = "18, 113, 255",
   secondColor = "221, 74, 255",
   thirdColor = "100, 220, 255",
   fourthColor = "200, 50, 50",
   fifthColor = "180, 180, 50",
   pointerColor = "140, 100, 255",
-  size = "80%",
+  size = "100%",
   blendingValue = "hard-light",
   children,
   className,
