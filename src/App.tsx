@@ -5,6 +5,7 @@ import HeroSection from "./components/hero-section"
 import { WindowsProvider } from "./lib/providers/window"
 import WindowStateManager from "./components/window/window-state-manager"
 import { Cards } from "./components/card-stack"
+import AppChip from "./components/app-chip"
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <BackgroundGradientAnimation/>
           <HeroSection/>
           <Cards/>
+          <AppChip/>
           <WindowStateManager/>
           <MagnificationDock/>
         </WindowsProvider>
