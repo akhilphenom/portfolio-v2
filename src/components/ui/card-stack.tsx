@@ -52,7 +52,7 @@ const CardComponent = () => ({
             key={card.id}
             className="absolute bg-[rgba(255,255,255)] h-[250px] w-60 rounded-3xl p-4 shadow-md flex flex-col justify-between
             bg-gradient-to-b from-slate-100 to-sky-50"
-            style={{ transformOrigin: "top center" }}
+            style={{ transformOrigin: "top center", opacity: index==0? 1: 0.7 }}
             initial={{ scale: 1 - (cards.length - 1) * scaleFactor, y: (cards.length - 1) * offset }}
             animate={{
               scale: 1 - index * scaleFactor,
