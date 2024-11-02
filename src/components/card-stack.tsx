@@ -6,13 +6,14 @@ export const Cards = () => {
     
     const Image = ({src, width = 50, height = 50}: {src: any, width?: number, height?: number}) => (
         <div className={
-            `w-[${width}px]`
+            `!w-[${width}px]`
         }>
-            <img src={src} className={
-                cn(
-                    `aspect-auto object-contain !h-[${height}px]`,
-                    width && `!w-[${width}px]`
-                )
+            <img src={src} 
+            style={{
+                width, height: height ? height : 'auto'
+            }}
+            className={
+                `aspect-auto object-contain`
             }/>
         </div>
     )
@@ -27,8 +28,8 @@ export const Cards = () => {
                     <Image src={ICONS.angular}/>
                     <Image src={ICONS.react}/>
                     <Image src={ICONS.expo}/>
-                    <Image src={ICONS.reactNative}/>
-                    <Image src={ICONS.next}/>
+                    <Image src={ICONS.reactNative} width={175}/>
+                    <Image src={ICONS.next} width={110}/>
                 </div>
             )
         },
@@ -44,8 +45,8 @@ export const Cards = () => {
                     <Image src={ICONS.tailwindcss}/>
                     <Image src={ICONS.shadcn}/>
                     <Image src={ICONS.angularmat}/>
-                    <Image src={ICONS.framer}/>
-                    <Image src={ICONS.lottie}/>
+                    <Image src={ICONS.framer} width={40}/>
+                    <Image src={ICONS.lottie} width={40}/>
                 </div>
             )
         },
@@ -54,11 +55,13 @@ export const Cards = () => {
             name: null,
             designation: '- Backend -',
             content: (
-                <div className="flex flex-wrap gap-4 items-center justify-center">
-                    <Image src={ICONS.mongo}/>
-                    <Image src={ICONS.express}/>
-                    <Image src={ICONS.nodejs}/>
-                    <Image src={ICONS.mysql}/>
+                <div className="flex flex-wrap gap-4 items-center justify-center" style={{
+                    rowGap: '0.7rem'
+                }}>
+                    <Image src={ICONS.mongo} width={60}/>
+                    <Image src={ICONS.express} width={60}/>
+                    <Image src={ICONS.nodejs} width={70}/>
+                    <Image src={ICONS.mysql} width={60}/>
                     <Image src={ICONS.redis}/>
                 </div>
             )
@@ -72,7 +75,7 @@ export const Cards = () => {
                     <Image src={ICONS.js}/>
                     <Image src={ICONS.ts}/>
                     <Image src={ICONS.cpp}/>
-                    <Image src={ICONS.java}/>
+                    <Image src={ICONS.java} height={50}/>
                     <Image src={ICONS.python}/>
                     <Image src={ICONS.golang}/>
                     <Image src={ICONS.sql}/>
@@ -91,7 +94,7 @@ export const Cards = () => {
                     <Image src={ICONS.gateway}/>
                     <Image src={ICONS.heroku}/>
                     <Image src={ICONS.route53}/>
-                    <Image src={ICONS.gc}/>
+                    <Image src={ICONS.gc} width={160}/>
                 </div>
             )
         },
