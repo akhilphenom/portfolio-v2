@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Maximize2Icon, Minimize2, X } from "lucide-react"
 import { useCallback, useState } from "react"
 import { cn } from "@/lib/utils"
-import { WINDOW_TYPES } from "@/lib/providers/window"
+import { WINDOW_TYPES, WINDOW_TYPES_NAMES } from "@/lib/providers/window"
 import { useWindows } from "@/lib/hooks/windows.hook"
 
 interface IProps {
@@ -97,14 +97,20 @@ export default function WindowComposition({
                 <div
                     className="flex items-center gap-2"
                     onMouseEnter={() => {
-                        setDisableDragging(windowName, true)
+                        // setDisableDragging(windowName, true)
                         setShowIcon(true)
                     }}
-                    onMouseLeave={mouseLeaveRoutine}
+                    // onMouseLeave={mouseLeaveRoutine}
                 >
                     <WindowActions/>
                 </div>
-                <div className="w-full h-full window-drag-handle" onClick={bringToFront} onMouseEnter={mouseLeaveRoutine}/>
+                <div className="w-full h-full window-drag-handle flex flex-col cursor-move" onClick={bringToFront} 
+                // onMouseEnter={mouseLeaveRoutine}
+                >
+                    <div className="flex items-center justify-center flex-1 font-mono text-sm pr-6 select-none text-blue-800">
+                        {WINDOW_TYPES_NAMES[windowName]}
+                    </div>
+                </div>
             </header>
             <div className="flex h-full flex-1" onClick={bringToFront}>
                 <div className="flex-1 p-4 space-y-4 flex flex-col">

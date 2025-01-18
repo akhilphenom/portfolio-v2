@@ -24,6 +24,14 @@ export enum WINDOW_TYPES {
   GMAIL = 'gmail',
 }
 
+export enum WINDOW_TYPES_NAMES {
+  'launchpad' = 'Launchpad',
+  'work-experience' = 'Work Experience',
+  'projects' = 'Projects',
+  'resume' = 'Resume',
+  'gmail' = 'Gmail',
+}
+
 export interface WindowContext {
   windows: Window[], 
   getWindow: (window: WINDOW_TYPES) => Window
