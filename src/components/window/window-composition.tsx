@@ -93,7 +93,7 @@ export default function WindowComposition({
 
     return (
         <div className="flex flex-col flex-1 shadow-lg bg-background rounded-lg">
-            <header className="flex items-center h-10 px-3 border-b bg-card !rounded-t-lg window-drag-handle">
+            <header className="flex items-center h-10 px-3 border-b bg-card !rounded-t-lg">
                 <div
                     className="flex items-center gap-2"
                     onMouseEnter={() => {
@@ -104,29 +104,9 @@ export default function WindowComposition({
                 >
                     <WindowActions/>
                 </div>
-                <div className="w-full h-full" onClick={bringToFront} onMouseEnter={mouseLeaveRoutine}/>
+                <div className="w-full h-full window-drag-handle" onClick={bringToFront} onMouseEnter={mouseLeaveRoutine}/>
             </header>
             <div className="flex h-full flex-1" onClick={bringToFront}>
-                <nav className="w-[200px] border-r bg-card rounded-bl-lg">
-                    <div className="p-4 space-y-2">
-                        <Button variant="ghost" className="justify-start w-full gap-2">
-                            <HomeIcon className="w-5 h-5" />
-                            <span>Desktop</span>
-                        </Button>
-                        <Button variant="ghost" className="justify-start w-full gap-2">
-                            <FolderIcon className="w-5 h-5" />
-                            <span>Documents</span>
-                        </Button>
-                        <Button variant="ghost" className="justify-start w-full gap-2">
-                            <DownloadIcon className="w-5 h-5" />
-                            <span>Downloads</span>
-                        </Button>
-                        <Button variant="ghost" className="justify-start w-full gap-2">
-                            <ImageIcon className="w-5 h-5" />
-                            <span>Pictures</span>
-                        </Button>
-                    </div>
-                </nav>
                 <div className="flex-1 p-4 space-y-4 flex flex-col">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">

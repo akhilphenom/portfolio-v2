@@ -29,7 +29,7 @@ export const BackgroundGradientAnimation = ({
   fourthColor = "200, 50, 50",
   fifthColor = "180, 180, 50",
   pointerColor = "140, 100, 255",
-  size = "80%",
+  size = "90%",
   blendingValue = "hard-light",
   children,
   className,
@@ -71,7 +71,7 @@ export const BackgroundGradientAnimation = ({
     document.body.style.setProperty("--third-color", thirdColor);
     document.body.style.setProperty("--fourth-color", fourthColor);
     document.body.style.setProperty("--fifth-color", fifthColor);
-    document.body.style.setProperty("--pointer-color", pointerColor);
+    // document.body.style.setProperty("--pointer-color", pointerColor);
     document.body.style.setProperty("--size", size);
     document.body.style.setProperty("--blending-value", blendingValue);
   }, []);
@@ -133,7 +133,7 @@ export const BackgroundGradientAnimation = ({
       <div
         className={cn(
           "gradients-container h-full w-full blur-lg",
-          isSafari ? "blur-2xl" : "[filter:url(#blurMe)_blur(40px)]"
+          isSafari ? "blur-2xl" : "[filter:url(#blurMe)_blur(100px)]"
         )}
       >
         <div

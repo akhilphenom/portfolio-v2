@@ -6,11 +6,11 @@ interface IProps {
 }
 
 export default function WobbleCard({}: IProps) {
-    const images = [IMAGES.jeep, IMAGES.wild]
+    const images = [IMAGES.blackSnitch, IMAGES.jeep, IMAGES.wild]
     const pickRandom = () => {
         return images[Math.floor(Math.random() * images.length)]
     }
-    const [image, setImage] = useState(images[1]);
+    const [image, setImage] = useState(images[2]);
     const changeImage = () => {
         setImage(images[0])
     }

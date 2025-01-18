@@ -15,5 +15,6 @@ const IMAGES = {
     hero : new URL('./stay-wild.jpg', import.meta.url).href,
     jeep : new URL('./jeep.png', import.meta.url).href,
     wild : new URL('./stay-wild.jpeg', import.meta.url).href,
+    blackSnitch : new URL('./black-snitch.jpg', import.meta.url).href,
 }
 export default IMAGES
