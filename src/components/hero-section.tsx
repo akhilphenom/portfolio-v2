@@ -23,7 +23,7 @@ function HeroSection() {
                 text-2xl tracking-tight text-transparent md:text-5xl font-thin select-none"
                 >
                     <p className='mb-4 tracking-tight'>
-                        Hello, Welcome <span className='mix-blend-color-dodge' style={{ color: 'initial'}}>👋</span><br/>
+                        Hello, Welcome <span style={{ color: 'initial'}}>👋</span><br/>
                     </p>
                     <p>
                         <span className='mr-3'>

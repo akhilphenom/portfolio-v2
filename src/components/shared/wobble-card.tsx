@@ -6,13 +6,13 @@ interface IProps {
 }
 
 export default function WobbleCard({}: IProps) {
-    const images = [IMAGES.blackSnitch, IMAGES.jeep, IMAGES.wild]
+    const images = [IMAGES.blackSnitch, IMAGES.jeep, IMAGES.wild, IMAGES.hero1, IMAGES.hero2]
     const pickRandom = () => {
         return images[Math.floor(Math.random() * images.length)]
     }
-    const [image, setImage] = useState(images[2]);
+    const [image, setImage] = useState(images[3]);
     const changeImage = () => {
-        setImage(images[0])
+        setImage(pickRandom())
     }
     return (
         <div className="relative group">
@@ -26,7 +26,7 @@ export default function WobbleCard({}: IProps) {
                     style={{ aspectRatio: 1, objectFit: "cover" }}
                 />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/70 rounded-full group-hover:from-transparent group-hover:to-black/50 transition-all duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30 rounded-full group-hover:from-transparent group-hover:to-black/10 transition-all duration-300" />
         </div>
     )
 }

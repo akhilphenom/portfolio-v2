@@ -13,8 +13,14 @@ const IMAGES = {
     leetcode : new URL('./leetcode.png', import.meta.url).href,
     linkedin : new URL('./linkedin.png', import.meta.url).href,
     hero : new URL('./stay-wild.jpg', import.meta.url).href,
+    hero1 : new URL('./hero-1.jpg', import.meta.url).href,
+    hero2 : new URL('./hero-2.jpg', import.meta.url).href,
     jeep : new URL('./jeep.png', import.meta.url).href,
     wild : new URL('./stay-wild.jpeg', import.meta.url).href,
     blackSnitch : new URL('./black-snitch.jpg', import.meta.url).href,
+    background2: new URL('./background-2.jpg', import.meta.url).href,
+    background1: new URL('./background-1.jpg', import.meta.url).href,
+    background0: new URL('./background-0.jpg', import.meta.url).href,
+    background3: new URL('./background-3.jpg', import.meta.url).href,
 }
 export default IMAGES
