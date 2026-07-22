@@ -47,7 +47,7 @@ function WindowResizer({
             zIndex,
             overflow: 'hidden',
         }}
-        className={`!flex flex-col`}
+        className={`!flex flex-col shadow-lg`}
         minHeight={400}
         minWidth={600}
         maxWidth={'100%'}

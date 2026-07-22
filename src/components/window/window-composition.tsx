@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button"
 import { Maximize2Icon, Minimize2, X } from "lucide-react"
-import { useCallback, useState } from "react"
+import { useCallback, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
-import { WINDOW_TYPES, WINDOW_TYPES_NAMES } from "@/lib/providers/window"
+import { WINDOW_TYPES, WINDOW_TYPES_NAMES, XYWH } from "@/lib/providers/window"
 import { useWindows } from "@/lib/hooks/windows.hook"
 
 interface IProps {
@@ -15,7 +15,8 @@ export default function WindowComposition({
     children
 }: IProps) {
     const [showIcon, setShowIcon] = useState(false);
-    const { windows, rearrangeWindows, setWindowState, setDisableDragging, setWindowDimensions } = useWindows();
+    const restoreDimensions = useRef<XYWH | null>(null);
+    const { windows, rearrangeWindows, setWindowState, setDisableDragging, setWindowDimensions, getWindow } = useWindows();
 
     const windowActionClass = `w-[10px] h-[10px] text-black transition-opacity ease-in-out duration-300`
 
@@ -44,6 +45,11 @@ export default function WindowComposition({
     }
 
     const expandWindow = () => {
+        bringToFront()
+        const current = getWindow(windowName)
+        if (current && current.dimensions.width !== '100vw') {
+            restoreDimensions.current = current.dimensions
+        }
         setWindowDimensions(windowName, {
             x: 0,
             y: 0,
@@ -53,9 +59,15 @@ export default function WindowComposition({
     }
 
     const minimizeWindow = () => {
+        if (restoreDimensions.current) {
+            setWindowDimensions(windowName, restoreDimensions.current)
+            restoreDimensions.current = null
+            return
+        }
+        const current = getWindow(windowName)
         setWindowDimensions(windowName, {
-            x: 0,
-            y: 0,
+            x: current?.dimensions.x ?? 0,
+            y: current?.dimensions.y ?? 0,
             width: 400,
             height: 400
         })
