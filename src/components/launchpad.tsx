@@ -7,6 +7,17 @@ import { WINDOW_TYPES } from '@/lib/providers/window'
 
 type DockIcon = (typeof icons)[number]
 
+const getDefaultSize = (window: WINDOW_TYPES) => {
+  switch (window) {
+    case WINDOW_TYPES.WORK_EXPERIENCE:
+      return { width: 760, height: 620 }
+    case WINDOW_TYPES.TERMINAL:
+      return { width: 680, height: 460 }
+    default:
+      return { width: 400, height: 400 }
+  }
+}
+
 const containerVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.25, ease: 'easeOut' } },
@@ -70,7 +81,11 @@ export default function Launchpad() {
       setDisableDragging(item.window, false)
       setWindowZIndex(item.window, 99 + windows.length + 1)
     } else {
-      addWindow(item.window, { x: 150, y: 150, width: 400, height: 400 })
+      addWindow(item.window, {
+        x: 150,
+        y: 150,
+        ...getDefaultSize(item.window),
+      })
       setWindowZIndex(item.window, 99 + windows.length + 1)
     }
     close()

@@ -2,6 +2,7 @@ const IMAGES = {
     launchpad : new URL('./launchpad.png', import.meta.url).href,
     home : new URL('./home.png', import.meta.url).href,
     gmail : new URL('./gmail.png', import.meta.url).href,
+    terminal : new URL('./terminal.svg', import.meta.url).href,
     github : new URL('./github.png', import.meta.url).href,
     find : new URL('./find.png', import.meta.url).href,
     job : new URL('./job.png', import.meta.url).href,

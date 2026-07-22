@@ -3,6 +3,18 @@ import { memo, useCallback, useRef } from 'react'
 import { icons } from './icons';
 import { Hint } from '../shared/hint';
 import { useWindows } from '@/lib/hooks/windows.hook';
+import { WINDOW_TYPES } from '@/lib/providers/window';
+
+const getDefaultSize = (window: WINDOW_TYPES) => {
+    switch (window) {
+        case WINDOW_TYPES.WORK_EXPERIENCE:
+            return { width: 760, height: 620 };
+        case WINDOW_TYPES.TERMINAL:
+            return { width: 680, height: 460 };
+        default:
+            return { width: 400, height: 400 };
+    }
+};
 
 function AppIconComponent ({ index, item, mouseX }) {
     const { addWindow, windows, setWindowState, setDisableDragging, setWindowZIndex, minimizeAll } = useWindows();
@@ -43,8 +55,7 @@ function AppIconComponent ({ index, item, mouseX }) {
             addWindow(item.window, {
                 x: 150,
                 y: 150,
-                width: 400,
-                height: 400,
+                ...getDefaultSize(item.window),
             })
             setWindowZIndex(item.window, 99 + windows.length + 1)
         }
@@ -76,7 +87,7 @@ function DockComponent () {
             background: '#ffffff24'
         }}
         >
-            { icons.map((item, index) => <AppIcon mouseX={mouseX} index={index} item={item} key={index}/>) }
+            { icons.filter((item) => item.showInDock).map((item, index) => <AppIcon mouseX={mouseX} index={index} item={item} key={index}/>) }
         </motion.div>
     )
 }
