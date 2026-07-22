@@ -6,6 +6,7 @@ import WindowStateManager from "./components/window/window-state-manager"
 import { Cards } from "./components/card-stack"
 import AppChip from "./components/app-chip"
 import BackgroundImage from "./components/background-image"
+import Launchpad from "./components/launchpad"
 import IMAGES from "./Images/Images"
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <AppChip/>
           <WindowStateManager/>
           <MagnificationDock/>
+          <Launchpad/>
         </WindowsProvider>
       </main>
     </GoogleOAuthProvider>

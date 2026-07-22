@@ -14,7 +14,7 @@ const IMAGES = {
     linkedin : new URL('./linkedin.png', import.meta.url).href,
     hero0 : new URL('./hero-0.jpg', import.meta.url).href,
     hero1 : new URL('./hero-1.jpg', import.meta.url).href,
-    hero2 : new URL('./hero-2.jpg', import.meta.url).href,
+    hero2 : new URL('./hero-2.jpeg', import.meta.url).href,
     jeep : new URL('./jeep.png', import.meta.url).href,
     blackSnitch : new URL('./black-snitch.jpg', import.meta.url).href,
     background0: new URL('./background-0.jpg', import.meta.url).href,

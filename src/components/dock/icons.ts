@@ -16,6 +16,7 @@ export const icons = [
         href: null,
         image: IMAGES.home,
         window: WINDOW_TYPES.LAUNCHPAD,
+        minimizeAll: true,
     },
     {
         name: 'Work Experience',

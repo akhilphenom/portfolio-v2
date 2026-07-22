@@ -43,7 +43,8 @@ export interface WindowContext {
   setWindowDimensions: (window: WINDOW_TYPES, dimensions: XYWH) => void,
   setDisableDragging: (window: WINDOW_TYPES, disable: boolean) => void,
   setWindowZIndex: (window: WINDOW_TYPES, zIndex: number) => void,
-  rearrangeWindows: (windows: Window[]) => void
+  rearrangeWindows: (windows: Window[]) => void,
+  minimizeAll: () => void
 }
 
 export const WindowsContext = createContext<WindowContext>({
@@ -57,7 +58,8 @@ export const WindowsContext = createContext<WindowContext>({
   setWindowDimensions: (_window: WINDOW_TYPES, _dimensions: XYWH) => {},
   setDisableDragging: (_window: WINDOW_TYPES, _disable: boolean) => {},
   setWindowZIndex: (_window: WINDOW_TYPES, _zIndex: number) => {},
-  rearrangeWindows: (_windows: Window[]) => {}
+  rearrangeWindows: (_windows: Window[]) => {},
+  minimizeAll: () => {}
 });
 
 export const WindowsProvider = ({ children }) => {
@@ -101,6 +103,10 @@ export const WindowsProvider = ({ children }) => {
     setWindows(windows)
   }
 
+  const minimizeAll = () => {
+    setWindows((prevWindows) => prevWindows.map(w => ({ ...w, opened: false })))
+  }
+
   return (
     <WindowsContext.Provider
       value={{ 
@@ -115,6 +121,7 @@ export const WindowsProvider = ({ children }) => {
         setDisableDragging,
         setWindowZIndex,
         rearrangeWindows,
+        minimizeAll,
       }}
     >
       {children}
