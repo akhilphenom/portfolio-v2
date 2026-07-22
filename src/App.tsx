@@ -13,7 +13,7 @@ function App() {
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_OAUTH_CLIENTID}>
       <main className="bg-slate-950">
         <WindowsProvider>
-          <BackgroundImage src={IMAGES.background2}/> 
+          <BackgroundImage src={IMAGES.background0}/> 
           <HeroSection/>
           <Cards/>
           <AppChip/>
