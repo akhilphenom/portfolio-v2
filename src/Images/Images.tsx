@@ -3,6 +3,8 @@ const IMAGES = {
     home : new URL('./home.png', import.meta.url).href,
     gmail : new URL('./gmail.png', import.meta.url).href,
     terminal : new URL('./terminal.svg', import.meta.url).href,
+    google : new URL('./google.svg', import.meta.url).href,
+    personalSpace : new URL('./personal-space.svg', import.meta.url).href,
     github : new URL('./github.png', import.meta.url).href,
     find : new URL('./find.png', import.meta.url).href,
     job : new URL('./job.png', import.meta.url).href,

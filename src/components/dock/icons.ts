@@ -98,6 +98,16 @@ export const icons: DockIcon[] = [
         showInDock: true,
     },
     {
+        name: 'Personal Space',
+        link: 'assets/personal-space.svg',
+        redirect: false,
+        url: '/personal-space',
+        image: IMAGES.personalSpace,
+        window: WINDOW_TYPES.PERSONAL_SPACE,
+        href: null,
+        showInDock: true,
+    },
+    {
         name: 'Gmail',
         link: 'assets/gmail.png',
         redirect: true,

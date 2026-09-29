@@ -11,6 +11,8 @@ const getDefaultSize = (window: WINDOW_TYPES) => {
             return { width: 760, height: 620 };
         case WINDOW_TYPES.TERMINAL:
             return { width: 680, height: 460 };
+        case WINDOW_TYPES.PERSONAL_SPACE:
+            return { width: 720, height: 560 };
         default:
             return { width: 400, height: 400 };
     }

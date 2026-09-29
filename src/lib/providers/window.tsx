@@ -23,6 +23,7 @@ export enum WINDOW_TYPES {
   RESUME = 'resume',
   GMAIL = 'gmail',
   TERMINAL = 'terminal',
+  PERSONAL_SPACE = 'personal-space',
 }
 
 export enum WINDOW_TYPES_NAMES {
@@ -32,6 +33,7 @@ export enum WINDOW_TYPES_NAMES {
   'resume' = 'Resume',
   'gmail' = 'Gmail',
   'terminal' = 'Terminal',
+  'personal-space' = 'Personal Space',
 }
 
 export interface WindowContext {
