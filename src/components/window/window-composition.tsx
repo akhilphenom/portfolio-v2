@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button"
 import { Maximize2Icon, Minimize2, X } from "lucide-react"
-import { useCallback, useRef, useState } from "react"
+import { useState } from "react"
 import { cn } from "@/lib/utils"
-import { WINDOW_TYPES, WINDOW_TYPES_NAMES, XYWH } from "@/lib/providers/window"
-import { useWindows } from "@/lib/hooks/windows.hook"
+import { WINDOW_TYPES, WINDOW_TYPES_NAMES } from "@/lib/providers/window"
+import { useWindowControls } from "@/lib/hooks/window-controls.hook"
 
 interface IProps {
     name: WINDOW_TYPES,
@@ -15,63 +15,20 @@ export default function WindowComposition({
     children
 }: IProps) {
     const [showIcon, setShowIcon] = useState(false);
-    const restoreDimensions = useRef<XYWH | null>(null);
-    const { windows, rearrangeWindows, setWindowState, setDisableDragging, setWindowDimensions, getWindow } = useWindows();
+    const { bringToFront, close, maximize, minimize, setDisableDragging } = useWindowControls(windowName);
 
     const windowActionClass = `w-[10px] h-[10px] text-black transition-opacity ease-in-out duration-300`
 
-    const bringToFront = useCallback(() => {
-        const opened = [...windows].filter(item => item.opened)
-        const closed = [...windows].filter(item => !item.opened)
-        const index = opened.findIndex(({ name }) => name == windowName);
-        if (index < 0) {
-            console.error('Window Type bug')
-            return;
-        }
-        const rearrangedArray = [...closed,...opened.slice(0, index), ...opened.slice(index + 1), opened[index]].map((item, index) => ({
-            ...item,
-            zIndex: !item.opened ? -1 : 99 + windows.length + index
-        }));
-        rearrangeWindows(rearrangedArray)
-    }, [windows])
+    const closeWindow = close
+    const expandWindow = maximize
+    const minimizeWindow = minimize
 
-    const mouseLeaveRoutine = () => {
-        setDisableDragging(windowName, false)
-        setShowIcon(false)
-    }
     
-    const closeWindow = () => {
-        setWindowState(windowName, false)
-    }
+  const mouseLeaveRoutine = () => {
+    setDisableDragging(windowName, false)
+    setShowIcon(false)
+  }
 
-    const expandWindow = () => {
-        bringToFront()
-        const current = getWindow(windowName)
-        if (current && current.dimensions.width !== '100vw') {
-            restoreDimensions.current = current.dimensions
-        }
-        setWindowDimensions(windowName, {
-            x: 0,
-            y: 0,
-            width: '100vw',
-            height: '100vh'
-        })
-    }
-
-    const minimizeWindow = () => {
-        if (restoreDimensions.current) {
-            setWindowDimensions(windowName, restoreDimensions.current)
-            restoreDimensions.current = null
-            return
-        }
-        const current = getWindow(windowName)
-        setWindowDimensions(windowName, {
-            x: current?.dimensions.x ?? 0,
-            y: current?.dimensions.y ?? 0,
-            width: 400,
-            height: 400
-        })
-    }
 
     const WindowActions = () => (
         <>

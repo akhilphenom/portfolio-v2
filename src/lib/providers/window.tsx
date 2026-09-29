@@ -22,6 +22,8 @@ export enum WINDOW_TYPES {
   PROJECTS = 'projects',
   RESUME = 'resume',
   GMAIL = 'gmail',
+  TERMINAL = 'terminal',
+  PERSONAL_SPACE = 'personal-space',
 }
 
 export enum WINDOW_TYPES_NAMES {
@@ -30,6 +32,8 @@ export enum WINDOW_TYPES_NAMES {
   'projects' = 'Projects',
   'resume' = 'Resume',
   'gmail' = 'Gmail',
+  'terminal' = 'Terminal',
+  'personal-space' = 'Personal Space',
 }
 
 export interface WindowContext {

@@ -1,4 +1,5 @@
 import { GoogleOAuthProvider } from "@react-oauth/google"
+import { GoogleAuthProvider } from "./lib/providers/google-auth"
 import { MagnificationDock } from "./components/dock/magnification-dock"
 import HeroSection from "./components/hero-section"
 import { WindowsProvider } from "./lib/providers/window"
@@ -12,17 +13,19 @@ import IMAGES from "./Images/Images"
 function App() {
   return (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_OAUTH_CLIENTID}>
-      <main className="bg-slate-950">
-        <WindowsProvider>
-          <BackgroundImage src={IMAGES.background0}/> 
-          <HeroSection/>
-          <Cards/>
-          <AppChip/>
-          <WindowStateManager/>
-          <MagnificationDock/>
-          <Launchpad/>
-        </WindowsProvider>
-      </main>
+      <GoogleAuthProvider>
+        <main className="bg-slate-950">
+          <WindowsProvider>
+            <BackgroundImage src={IMAGES.background0}/> 
+            <HeroSection/>
+            <Cards/>
+            <AppChip/>
+            <WindowStateManager/>
+            <MagnificationDock/>
+            <Launchpad/>
+          </WindowsProvider>
+        </main>
+      </GoogleAuthProvider>
     </GoogleOAuthProvider>
   )
 }
