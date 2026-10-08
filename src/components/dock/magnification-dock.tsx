@@ -13,6 +13,8 @@ const getDefaultSize = (window: WINDOW_TYPES) => {
             return { width: 680, height: 460 };
         case WINDOW_TYPES.PERSONAL_SPACE:
             return { width: 720, height: 560 };
+        case WINDOW_TYPES.PROJECTS:
+            return { width: 900, height: 650 };
         default:
             return { width: 400, height: 400 };
     }
@@ -83,13 +85,13 @@ function DockComponent () {
     return (
         <motion.div 
         onMouseMove={e => mouseX.set(e.pageX)}
-        onMouseLeave={_ => mouseX.set(Number.MAX_SAFE_INTEGER)}
+        onMouseLeave={() => mouseX.set(Number.MAX_SAFE_INTEGER)}
         className='flex flex-row items-center gap-4 justify-center px-5 py-2 rounded-xl max-h-[75px] shadow-md'
         style={{
             background: '#ffffff24'
         }}
         >
-            { icons.filter((item) => item.showInDock).map((item, index) => <AppIcon mouseX={mouseX} index={index} item={item} key={index}/>) }
+            { icons.filter((item) => item.showInDock && !item.hidden).map((item, index) => <AppIcon mouseX={mouseX} index={index} item={item} key={index}/>) }
         </motion.div>
     )
 }

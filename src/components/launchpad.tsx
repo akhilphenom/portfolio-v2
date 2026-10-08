@@ -15,6 +15,8 @@ const getDefaultSize = (window: WINDOW_TYPES) => {
       return { width: 680, height: 460 }
     case WINDOW_TYPES.PERSONAL_SPACE:
       return { width: 720, height: 560 }
+    case WINDOW_TYPES.PROJECTS:
+      return { width: 900, height: 650 }
     default:
       return { width: 400, height: 400 }
   }
@@ -49,7 +51,7 @@ export default function Launchpad() {
   const close = () => setWindowState(WINDOW_TYPES.LAUNCHPAD, false)
 
   const apps = useMemo(
-    () => icons.filter((i) => i.name !== 'Launchpad' && i.name !== 'Home'),
+    () => icons.filter((i) => !i.hidden && i.name !== 'Launchpad' && i.name !== 'Home'),
     [],
   )
 
@@ -97,13 +99,20 @@ export default function Launchpad() {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-[9999] flex flex-col items-center bg-black/40 backdrop-blur-2xl"
+          className="fixed inset-0 z-[2147483647] flex flex-col items-center bg-black/40 backdrop-blur-2xl"
           variants={containerVariants}
           initial="initial"
           animate="animate"
           exit="exit"
           onClick={close}
         >
+          <div className="absolute right-5 top-5 flex items-center gap-1.5 text-[10px] text-white/60">
+            <kbd className="rounded border border-white/20 bg-white/10 px-1.5 py-0.5 font-mono text-white/80">
+              ESC
+            </kbd>
+            <span>to close</span>
+          </div>
+
           <div
             className="mt-12 mb-10 w-full max-w-md px-4"
             onClick={(e) => e.stopPropagation()}

@@ -32,7 +32,7 @@ const LINKS: Record<string, LinkDef> = {
   },
   resume: {
     label: 'Résumé',
-    url: 'https://drive.google.com/file/d/1DEuca2y_Gwwt_ZkyKtjqVo9sQo7gH8bZ/view?usp=sharing',
+    url: 'https://drive.google.com/file/d/1y4oH2K3T5_iycyvQhz8RSbJ-6C3buVHK/view?usp=sharing',
     description: 'My latest résumé (PDF).',
   },
   youtube: {
@@ -139,8 +139,7 @@ function runCommand(raw: string): CommandResult {
             <p>
               Hi, I'm{' '}
               <span className="text-emerald-400">Sai Akhil Katukam</span> — a
-              Software Engineer at Microsoft on the CXE Platform team, based in
-              Hyderabad, India.
+              SDE-II at Microsoft. Founding team Engineer for Link to Windows Product, based in Hyderabad, India.
             </p>
             <p className="mt-2">
               I build reliable services at scale and love full-stack product

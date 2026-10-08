@@ -2,14 +2,12 @@ import React, { ReactNode } from 'react';
 
 interface BackgroundImageProps {
   src: string;
-  alt?: string;
   children?: ReactNode;
   className?: string;
 }
 
 const BackgroundImage: React.FC<BackgroundImageProps> = ({
   src,
-  alt = 'background',
   children,
   className = '',
 }) => {

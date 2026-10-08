@@ -5,7 +5,7 @@ import HeroSection from "./components/hero-section"
 import { WindowsProvider } from "./lib/providers/window"
 import WindowStateManager from "./components/window/window-state-manager"
 import { Cards } from "./components/card-stack"
-import AppChip from "./components/app-chip"
+import NotificationHub from "./components/notification-hub"
 import BackgroundImage from "./components/background-image"
 import Launchpad from "./components/launchpad"
 import IMAGES from "./Images/Images"
@@ -19,7 +19,7 @@ function App() {
             <BackgroundImage src={IMAGES.background0}/> 
             <HeroSection/>
             <Cards/>
-            <AppChip/>
+            <NotificationHub/>
             <WindowStateManager/>
             <MagnificationDock/>
             <Launchpad/>

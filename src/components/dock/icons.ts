@@ -12,10 +12,10 @@ export interface DockIcon {
     minimizeAll?: boolean;
     opened?: boolean;
     /**
-     * Whether this app renders in the dock. Every app is always available in
-     * the launchpad; this flag only controls dock visibility.
+     * Whether this app renders in the dock.
      */
     showInDock?: boolean;
+    hidden?: boolean;
 }
 
 export const icons: DockIcon[] = [
@@ -64,7 +64,7 @@ export const icons: DockIcon[] = [
         url: null,
         image: IMAGES.resume,
         window: WINDOW_TYPES.RESUME,
-        href: 'https://drive.google.com/file/d/1DEuca2y_Gwwt_ZkyKtjqVo9sQo7gH8bZ/view?usp=sharing',
+        href: 'https://drive.google.com/file/d/1y4oH2K3T5_iycyvQhz8RSbJ-6C3buVHK/view?usp=sharing',
         showInDock: true,
     },
     {
@@ -105,7 +105,8 @@ export const icons: DockIcon[] = [
         image: IMAGES.personalSpace,
         window: WINDOW_TYPES.PERSONAL_SPACE,
         href: null,
-        showInDock: true,
+        showInDock: false,
+        hidden: true,
     },
     {
         name: 'Gmail',
