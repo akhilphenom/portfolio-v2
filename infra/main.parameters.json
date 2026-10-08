@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": {
+      "value": "portfolio-v2-prod-71b4"
+    },
+    "location": {
+      "value": "eastasia"
+    },
+    "sessionId": {
+      "value": "71b4de3b-a270-4ba5-a288-208ee15b8589"
+    },
+    "deployedBy": {
+      "value": "GitHub Copilot"
+    },
+    "createdAt": {
+      "value": "2026-10-08T15:32:33.8975447+05:30"
+    },
+    "deployerObjectId": {
+      "value": ""
+    }
+  }
+}
