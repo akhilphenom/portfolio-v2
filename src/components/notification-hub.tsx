@@ -1,5 +1,7 @@
 import { Bell, BookOpen, FolderGit2, Monitor } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
+import { useWindows } from '@/lib/hooks/windows.hook'
+import { cn } from '@/lib/utils'
 
 const notifications = [
   {
@@ -32,6 +34,10 @@ export default function NotificationHub() {
   const [isOpen, setIsOpen] = useState(false)
   const [now, setNow] = useState(() => new Date())
   const hubRef = useRef<HTMLDivElement>(null)
+  const { windows } = useWindows()
+  const hasFullScreenWindow = windows.some(
+    (window) => window.opened && window.fullScreen,
+  )
 
   useEffect(() => {
     const clockInterval = window.setInterval(() => setNow(new Date()), 30_000)
@@ -61,6 +67,12 @@ export default function NotificationHub() {
     }
   }, [])
 
+  useEffect(() => {
+    if (hasFullScreenWindow) {
+      setIsOpen(false)
+    }
+  }, [hasFullScreenWindow])
+
   const time = now.toLocaleTimeString([], {
     hour: '2-digit',
     minute: '2-digit',
@@ -68,7 +80,11 @@ export default function NotificationHub() {
   return (
     <div
       ref={hubRef}
-      className="fixed left-1/2 top-4 z-[10000] -translate-x-1/2"
+      className={cn(
+        'fixed left-1/2 top-4 z-[10000] -translate-x-1/2 transition-all duration-200',
+        hasFullScreenWindow && 'pointer-events-none -translate-y-4 opacity-0',
+      )}
+      aria-hidden={hasFullScreenWindow}
     >
       <button
         type="button"

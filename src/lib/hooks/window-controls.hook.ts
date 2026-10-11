@@ -13,6 +13,7 @@ export function useWindowControls(windowName: WINDOW_TYPES) {
     rearrangeWindows,
     setWindowState,
     setWindowDimensions,
+    setWindowScreenSize,
     getWindow,
     setDisableDragging,
   } = useWindows()
@@ -54,12 +55,20 @@ export function useWindowControls(windowName: WINDOW_TYPES) {
       width: '100vw',
       height: '100vh',
     })
-  }, [bringToFront, getWindow, windowName, setWindowDimensions])
+    setWindowScreenSize(windowName, true)
+  }, [
+    bringToFront,
+    getWindow,
+    windowName,
+    setWindowDimensions,
+    setWindowScreenSize,
+  ])
 
   const minimize = useCallback(() => {
     if (restoreDimensions.current) {
       setWindowDimensions(windowName, restoreDimensions.current)
       restoreDimensions.current = null
+      setWindowScreenSize(windowName, false)
       return
     }
     const current = getWindow(windowName)
@@ -69,7 +78,8 @@ export function useWindowControls(windowName: WINDOW_TYPES) {
       width: 400,
       height: 400,
     })
-  }, [getWindow, windowName, setWindowDimensions])
+    setWindowScreenSize(windowName, false)
+  }, [getWindow, windowName, setWindowDimensions, setWindowScreenSize])
 
   return { bringToFront, close, maximize, minimize, setDisableDragging }
 }
